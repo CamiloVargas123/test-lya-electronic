@@ -1,0 +1,29 @@
+@import "../../sass/index.scss";
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1em;
+  div {
+    width: 100%;
+    input{
+      width: 40%;
+    }
+  }
+  button{
+    width: fit-content;
+    transition: $transition;
+    cursor: pointer;
+    padding: .5em 1em;
+    background-color: $primary-color;
+    border: none;
+    border-radius: $boder-radius;
+    color: $font-light;
+    &:hover{
+      background-color: $primary-color-hover;
+      color: $font-dark;
+    }
+  }
+}

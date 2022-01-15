@@ -28,24 +28,7 @@
   display: flex;
   flex-direction: column;
   padding: 2em 0;
-  gap: 1em;
-  &__btn{
-    display: flex;
-    justify-content: flex-end;
-    button{
-      transition: $transition;
-      cursor: pointer;
-      padding: .5em 1em;
-      background-color: $primary-color;
-      border: none;
-      border-radius: $boder-radius;
-      color: $font-light;
-      &:hover{
-        background-color: $primary-color-hover;
-        color: $font-dark;
-      }
-    }
-  }
+  gap: 2em;
 }
 
 

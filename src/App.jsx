@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ToDoList from './components/ToDoList/ToDoList'
+import Buttons from './components/Buttons/Buttons'
 
 
 import './App.scss'
@@ -15,9 +16,7 @@ function App() {
         </div>
       </header>
       <div className='container App-content'>
-        <div className='App-content__btn'>
-          <button>Add task</button>
-        </div>
+        <Buttons />
         <ToDoList />
       </div>
     </div>
