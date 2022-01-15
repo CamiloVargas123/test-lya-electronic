@@ -1,5 +1,20 @@
 $default-fontFamily: 'Nunito';
+$defaultFontSize: 14px;
+
+$primary-color: #585859;
+$primary-color-hover:#D9D9D9;
+
 $font-light: #FFF;
+$font-dark: #181d27;
+
+$success: #36c03d;
+$error: #bd343f;
+$warning: #c2bf34;
+$info: #3081b8;
+$question: #41e4fa;
+
+$boder-radius: 0.35rem;
+$transition: all .15s ease-in;
 
 // Responsive size
 $breakpoint-xs: 320px;
