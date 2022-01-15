@@ -15,6 +15,9 @@ function App() {
         </div>
       </header>
       <div className='container App-content'>
+        <div className='App-content__btn'>
+          <button>Add task</button>
+        </div>
         <ToDoList />
       </div>
     </div>
