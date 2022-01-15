@@ -16,6 +16,24 @@ code {
     monospace;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 75%;
+  
+  @media (max-width: $breakpoint-xl){
+    max-width: 80%;
+  }
+  @media (max-width: $breakpoint-lg){
+    max-width: 85%;
+  }
+  @media (max-width: $breakpoint-md){
+    max-width: 90%;
+  }
+  @media (max-width: $breakpoint-sm){
+    max-width: 95%;
+  }
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
