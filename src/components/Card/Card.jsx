@@ -1,13 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useList } from '../../provider/ListProvider'
 import { removeToDoList, updateToDoList } from '../../api/toDoList'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons'
+import ModalTask from '../../utils/ModalTask/ModalTask'
 
 import './Card.scss'
 
 export default function Card({data, id}) {
   let listTask = data.description.split("\n")
   const { list, setList } = useList()
-  console.log(list)
+  
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
   const removeTask = () => {
     setList(e => e.filter((e,i) => i != id))
     removeToDoList(id)
@@ -18,11 +23,18 @@ export default function Card({data, id}) {
     setList(newArray)
     updateToDoList(newArray)
   }
+
+  const editTask = () => {
+    setIsModalVisible(true)
+  }
+
   return (
     <div className='card'>
       <div className='card__header'>
+        <button className='card__header__btn-edit' onClick={() => editTask()}><FontAwesomeIcon icon={faEdit} /></button>
+        <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} data={list[id]} id={id} />
         <h2>{data.title}</h2>
-        <button onClick={() => removeTask()}>X</button>
+        <button className='card__header__btn-delete' onClick={() => removeTask()}><FontAwesomeIcon icon={faTimes} /></button>
       </div>
       <div className='card__content'>
         <ul>

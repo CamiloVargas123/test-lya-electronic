@@ -2,25 +2,39 @@ import React, {useState} from 'react'
 import { Modal, Slider, InputNumber } from 'antd'
 import { setToDoList } from '../../api/toDoList'
 import { useList } from '../../provider/ListProvider'
+import { updateToDoList } from '../../api/toDoList'
 
 import "./ModalTask.scss"
 
 export default function ModalTask(props) {
-  const {isModalVisible, setIsModalVisible} = props
+  const {isModalVisible, setIsModalVisible, data, id} = props
 
-  const { setList } = useList()
+  const { list, setList } = useList()
   const [inputValue, setInputValue] = useState(0)
-  const [task, setTask] = useState({title: "", description: "", check: false})
+  const [task, setTask] = useState(data ? {title: data.title, description: data.description, check: data.check} : {title: "", description: "", check: false})
 
   const addTask = () => {
-    setIsModalVisible(false)
     setToDoList(task)
     setList(e => [...e, task])
+    setIsModalVisible(false)
     setTask({title: "", description: "", check: false})
   }
 
+  const updateTask = () => {
+    const newArray = [...list]
+    newArray.map((item, idx) => {
+      if(idx == id){
+        item.title = task.title
+        item.description = task.description
+      }
+    })
+    setList(newArray)
+    updateToDoList(newArray)
+    setIsModalVisible(false)
+  }
+
   return (
-    <Modal title="Add Task" visible={isModalVisible} onOk={() => addTask()} onCancel={() => setIsModalVisible(false)}>
+    <Modal title="Add Task" visible={isModalVisible} onOk={() => data ? updateTask() : addTask()} onCancel={() => setIsModalVisible(false)}>
       <b>Add random task of cats?</b>
       <div className='random-task'>
         <Slider min={0} max={10} onChange={e => setInputValue(e)} value={inputValue} />
