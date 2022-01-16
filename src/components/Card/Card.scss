@@ -16,6 +16,7 @@
     }
     button{
       border: none;
+      border-left: 1px solid $primary-color-hover;
       border-top-right-radius: $boder-radius;
       cursor: pointer;
       padding: .2em .5em;
@@ -43,6 +44,7 @@
     border-bottom-left-radius: $boder-radius;
     border-bottom-right-radius: $boder-radius;
     border: none;
+    border-top: 1px solid $primary-color-hover;
     padding: .5em 0;
     cursor: pointer;
     position: relative;
