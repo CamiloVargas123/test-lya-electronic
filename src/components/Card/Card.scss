@@ -3,8 +3,7 @@
 .card{
   border-radius: $boder-radius;
   border: 1px solid $primary-color-hover;
-  width: 16em;
-  height: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,6 +28,7 @@
   }
   &__content{
     height: 100%;
+    overflow-y: auto;
     ul{
       padding: .5em;
       text-align: left;
