@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import ToDoList from './components/ToDoList/ToDoList'
 import Buttons from './components/Buttons/Buttons'
-
+import { getToDoList } from './api/toDoList'
 
 import './App.scss'
 
 function App() {
-
+  const [list, setList] = useState(getToDoList())
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -16,8 +17,8 @@ function App() {
         </div>
       </header>
       <div className='container App-content'>
-        <Buttons />
-        <ToDoList />
+        <Buttons setList={setList} />
+        <ToDoList list={list} />
       </div>
     </div>
   )

@@ -15,7 +15,7 @@ export default function Buttons({setList}) {
     setList(e => [...e, task])
     setTask({title: "", description: ""})
   }
-  
+
   return (
     <div className='buttons'>
       <div>
@@ -34,7 +34,7 @@ export default function Buttons({setList}) {
             onChange={e => setInputValue(e)}
           />
         </div>
-        <input name='title' value={task.title} className='input-title' type="text" placeholder='Title' onChange={e => setTask({...task, [e.target.name]: e.target.value})} />
+        <input name='title' value={task.title} className='input-title' type="text" placeholder='Title' onChange={e => setTask({...task, [e.target.name]: e.target.value.toUpperCase()})} />
         <textarea name='description' value={task.description} onChange={e => setTask({...task, [e.target.name]: e.target.value})} disabled={inputValue > 0} />
       </Modal>
     </div>
