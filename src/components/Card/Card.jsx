@@ -1,15 +1,22 @@
 import React from 'react'
 import { useList } from '../../provider/ListProvider'
-import { removeToDoList } from '../../api/toDoList'
+import { removeToDoList, updateToDoList } from '../../api/toDoList'
 
 import './Card.scss'
 
 export default function Card({data, id}) {
   let listTask = data.description.split("\n")
-  const {setList} = useList()
+  const { list, setList } = useList()
+  console.log(list)
   const removeTask = () => {
     setList(e => e.filter((e,i) => i != id))
     removeToDoList(id)
+  }
+  const checkTask = () => {
+    const newArray = [...list]
+    newArray[id].check = !newArray[id].check
+    setList(newArray)
+    updateToDoList(newArray)
   }
   return (
     <div className='card'>
@@ -24,7 +31,7 @@ export default function Card({data, id}) {
           }
         </ul>
       </div>
-      <button className={data.check ? " card__btn check" : "card__btn"} >{data.check ? "Done" : "Progress"}</button>
+      <button className={data.check === true ? " card__btn check" : "card__btn"} onClick={() => checkTask()} >{data.check === true ? "Done" : "Progress"}</button>
     </div>
   )
 }

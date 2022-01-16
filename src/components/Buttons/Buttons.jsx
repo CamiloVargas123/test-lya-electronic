@@ -10,13 +10,13 @@ export default function Buttons() {
   const { setList } = useList()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [inputValue, setInputValue] = useState(0)
-  const [task, setTask] = useState({title: "", description: ""})
+  const [task, setTask] = useState({title: "", description: "", check: false})
 
   const addTask = () => {
     setIsModalVisible(false)
     setToDoList(task)
     setList(e => [...e, task])
-    setTask({title: "", description: ""})
+    setTask({title: "", description: "", check: false})
   }
 
   return (
