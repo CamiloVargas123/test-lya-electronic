@@ -8,11 +8,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  h2{
-    padding: .5em;
+  &__header{
+    display: flex;
     border-bottom: 1px solid $primary-color-hover;
+    h2{
+      width: 100%;
+      padding: .5em;
+    }
+    button{
+      border: none;
+      border-top-right-radius: $boder-radius;
+      cursor: pointer;
+      padding: .2em .5em;
+      transition: $transition;
+      &:hover{
+        background-color: $error;
+        color: $font-light;
+      }
+    }
   }
-  div{
+  &__content{
     height: 100%;
     ul{
       padding: .5em;
@@ -23,7 +38,8 @@
       }
     }
   }
-  button{
+
+  &__btn{
     border-bottom-left-radius: $boder-radius;
     border-bottom-right-radius: $boder-radius;
     border: none;
