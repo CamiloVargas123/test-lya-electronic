@@ -2,9 +2,9 @@
 
 .todolist {
   &__cards{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    display: grid;
     gap: 2em;
+    grid-auto-rows: 10rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
   }
 }
