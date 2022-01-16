@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
+import Card from '../Card/Card'
+
 import { Empty } from 'antd'
 
 import './ToDoList.scss'
 
-export default function ToDoList() {
-  const [list, setList] = useState(localStorage.getItem("todolist"))
-  console.log(list)
+export default function ToDoList({list}) {
+  
   return (
     <div className='todolist'>
       {
         list ? 
-          <ul>
-            {list.map(item => {
-              return <li>{item}</li>
+          <ul className='todolist__cards'>
+            {list.map((item, idx) => {
+              return <li key={idx}><Card data={item} /></li>
             })}
           </ul>
         :

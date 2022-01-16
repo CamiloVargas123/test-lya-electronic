@@ -1,0 +1,10 @@
+@import "../../sass/index.scss";
+
+.todolist {
+  &__cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2em;
+  }
+}
