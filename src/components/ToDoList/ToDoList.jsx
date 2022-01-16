@@ -1,11 +1,13 @@
 import React from 'react'
 import Card from '../Card/Card'
+import { useList } from '../../provider/ListProvider'
 
 import { Empty } from 'antd'
 
 import './ToDoList.scss'
 
-export default function ToDoList({list}) {
+export default function ToDoList() {
+  const {list} = useList()
   
   return (
     <div className='todolist'>

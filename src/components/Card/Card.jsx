@@ -3,7 +3,6 @@ import React from 'react'
 import './Card.scss'
 
 export default function Card({data}) {
-  console.log("data", data)
   let list = data.description.split("\n")
   return (
     <div className='card'>
@@ -11,7 +10,7 @@ export default function Card({data}) {
       <div>
         <ul>
           {
-            list.map(e => e.length > 0 && <li>{e}</li>)        
+            list.map((e, idx) => e.length > 0 && <li key={idx}>{e}</li>)        
           }
         </ul>
       </div>

@@ -1,10 +1,13 @@
 import { Modal, Slider, InputNumber } from 'antd'
 import React, {useState} from 'react'
 import { setToDoList } from '../../api/toDoList'
+import { useList } from '../../provider/ListProvider'
+
 
 import './Buttons.scss'
 
-export default function Buttons({setList}) {
+export default function Buttons() {
+  const { setList } = useList()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [inputValue, setInputValue] = useState(0)
   const [task, setTask] = useState({title: "", description: ""})
