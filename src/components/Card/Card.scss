@@ -1,0 +1,62 @@
+@import "../../sass/index.scss";
+
+.card{
+  border-radius: $boder-radius;
+  border: 1px solid $primary-color-hover;
+  width: 16em;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  h2{
+    padding: .5em;
+    border-bottom: 1px solid $primary-color-hover;
+  }
+  div{
+    height: 100%;
+    ul{
+      padding: .5em;
+      text-align: left;
+      li{
+        list-style: disc inside;
+        padding: .25em 0;
+      }
+    }
+  }
+  button{
+    border-bottom-left-radius: $boder-radius;
+    border-bottom-right-radius: $boder-radius;
+    border: none;
+    padding: .5em 0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s ease-in;
+    &:after {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 100%;
+      content: "";
+      display: block;
+      background-color: $success;
+      transition: all 0.2s;
+      border-bottom-left-radius: $boder-radius;
+      border-bottom-right-radius: $boder-radius;
+    }
+    &:hover {
+      color: white;
+      background: transparent;
+      transition: all 0.2s;
+      &:after {
+        right: 0;
+        z-index: -1;
+        transition: all 0.2s;
+      }
+    }
+  }
+  .check{
+    color: $font-light;
+    background-color: $success;
+  }
+}
