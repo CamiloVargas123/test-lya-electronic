@@ -9,7 +9,7 @@ export function useList() {
 }
 
 export function ListProvider({children}){
-  const [list, setList] = useState(getToDoList())
+  const [list, setList] = useState(getToDoList() || [])
 
   const value ={
     list,
