@@ -9,7 +9,14 @@ function getToDoList() {
   return JSON.parse(localStorage.getItem('todolist'));
 }
 
+function removeToDoList(id){
+  let getList = getToDoList()
+  let removeTask = getList.filter((e,i) => i != id)
+  return localStorage.setItem('todolist', JSON.stringify(removeTask));
+}
+
 export {
   setToDoList,
-  getToDoList
+  getToDoList,
+  removeToDoList
 }
