@@ -27,7 +27,6 @@ export default function Card({data}) {
         return e.check = !e.check
       }
     })
-    setList(newArray)
     setListStatic(newArray)
     updateToDoList(newArray)
   }
