@@ -9,18 +9,20 @@ import './Card.scss'
 
 export default function Card({data, id}) {
   let listTask = data.description.split("\n")
-  const { list, setList } = useList()
+  const { list, setList, setListStatic } = useList()
   
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const removeTask = () => {
     setList(e => e.filter((e,i) => i != id))
+    setListStatic(e => e.filter((e,i) => i != id))
     removeToDoList(id)
   }
   const checkTask = () => {
     const newArray = [...list]
     newArray[id].check = !newArray[id].check
     setList(newArray)
+    setListStatic(newArray)
     updateToDoList(newArray)
   }
 

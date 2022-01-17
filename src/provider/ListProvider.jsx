@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react"
+import React, { useEffect, useState, createContext, useContext } from "react"
 import { getToDoList } from "../api/toDoList"
 
 
@@ -9,11 +9,19 @@ export function useList() {
 }
 
 export function ListProvider({children}){
-  const [list, setList] = useState(getToDoList() || [])
+  const [listStatic, setListStatic] = useState(getToDoList() || []) //static
+  const [list, setList] = useState(getToDoList() || []) //dinamic
+
+  useEffect(() => {
+    setList(getToDoList() || [])
+    setListStatic(getToDoList() || [])
+  }, [])
 
   const value ={
     list,
-    setList
+    setList,
+    listStatic,
+    setListStatic
   }
 
   return <listContext.Provider value={value} >{children}</listContext.Provider>

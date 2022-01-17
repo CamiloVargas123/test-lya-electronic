@@ -9,13 +9,14 @@ import "./ModalTask.scss"
 export default function ModalTask(props) {
   const {isModalVisible, setIsModalVisible, data, id} = props
 
-  const { list, setList } = useList()
+  const { list, setList, setListStatic } = useList()
   const [inputValue, setInputValue] = useState(0)
   const [task, setTask] = useState(data ? {title: data.title, description: data.description, check: data.check} : {title: "", description: "", check: false})
 
   const addTask = () => {
     setToDoList(task)
     setList(e => [...e, task])
+    setListStatic(e => [...e, task])
     setIsModalVisible(false)
     setTask({title: "", description: "", check: false})
   }
@@ -29,6 +30,7 @@ export default function ModalTask(props) {
       }
     })
     setList(newArray)
+    setListStatic(newArray)
     updateToDoList(newArray)
     setIsModalVisible(false)
   }
