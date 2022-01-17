@@ -6,25 +6,33 @@ import { updateToDoList } from '../../api/toDoList'
 
 import "./ModalTask.scss"
 
-export default function ModalTask(props) {
-  const {isModalVisible, setIsModalVisible, data, id} = props
+const generateIdWithDate = () => {
+  return Date.now()
+}
 
-  const { list, setList, setListStatic } = useList()
+export default function ModalTask(props) {
+  const {isModalVisible, setIsModalVisible, data} = props
+  const { list, setList, listStatic, setListStatic } = useList()
   const [inputValue, setInputValue] = useState(0)
-  const [task, setTask] = useState(data ? {title: data.title, description: data.description, check: data.check} : {title: "", description: "", check: false})
+  const [task, setTask] = useState(data ? {...data} : {})
 
   const addTask = () => {
-    setToDoList(task)
-    setList(e => [...e, task])
-    setListStatic(e => [...e, task])
-    setIsModalVisible(false)
-    setTask({title: "", description: "", check: false})
+    if(task.title.length > 0 && task.description.length > 0){
+      const newTask = {...task}
+      newTask.id = generateIdWithDate()
+      newTask.check = false
+      setToDoList(newTask)
+      setList([...list, newTask])
+      setListStatic([...list, newTask])
+      setIsModalVisible(false)
+      setTask({title: "", description: ""})
+    }
   }
 
   const updateTask = () => {
-    const newArray = [...list]
-    newArray.map((item, idx) => {
-      if(idx == id){
+    const newArray = [...listStatic]
+    newArray.map(item => {
+      if(item.id == data.id){
         item.title = task.title
         item.description = task.description
       }

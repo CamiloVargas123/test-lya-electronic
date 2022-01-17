@@ -7,20 +7,26 @@ import ModalTask from '../../utils/ModalTask/ModalTask'
 
 import './Card.scss'
 
-export default function Card({data, id}) {
+export default function Card({data}) {
   let listTask = data.description.split("\n")
-  const { list, setList, setListStatic } = useList()
+  const { setList, listStatic, setListStatic } = useList()
   
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const removeTask = () => {
-    setList(e => e.filter((e,i) => i != id))
-    setListStatic(e => e.filter((e,i) => i != id))
-    removeToDoList(id)
+    setList(e => e.filter(e => e.id != data.id))
+    setListStatic(e => e.filter(e => e.id != data.id))
+    removeToDoList(data.id)
   }
+ 
+
   const checkTask = () => {
-    const newArray = [...list]
-    newArray[id].check = !newArray[id].check
+    const newArray = [...listStatic]
+    newArray.map(e => {
+      if(e.id == data.id){
+        return e.check = !e.check
+      }
+    })
     setList(newArray)
     setListStatic(newArray)
     updateToDoList(newArray)
@@ -34,7 +40,7 @@ export default function Card({data, id}) {
     <div className='card'>
       <div className='card__header'>
         <button className='card__header__btn-edit' onClick={() => editTask()}><FontAwesomeIcon icon={faEdit} /></button>
-        <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} data={list[id]} id={id} />
+        <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} data={data} />
         <h2>{data.title}</h2>
         <button className='card__header__btn-delete' onClick={() => removeTask()}><FontAwesomeIcon icon={faTimes} /></button>
       </div>

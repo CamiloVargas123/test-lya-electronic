@@ -11,7 +11,7 @@ function getToDoList() {
 
 function removeToDoList(id){
   let getList = getToDoList()
-  let removeTask = getList.filter((e,i) => i != id)
+  let removeTask = getList.filter(e => e.id != id)
   return localStorage.setItem('todolist', JSON.stringify(removeTask));
 }
 function updateToDoList(array){
