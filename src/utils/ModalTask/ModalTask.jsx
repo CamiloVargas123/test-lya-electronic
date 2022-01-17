@@ -16,13 +16,16 @@ export default function ModalTask(props) {
   const { list, setList, listStatic, setListStatic } = useList()
   const [inputValue, setInputValue] = useState(0)
   const [task, setTask] = useState(data ? {...data} : {})
-  const [randomTask, setRandomTask] = useState("")
+  const [randomTask, setRandomTask] = useState([])
 
   const addTask = () => {
-    if(task.hasOwnProperty("title") && task.hasOwnProperty("description")){
+    if(task.hasOwnProperty("title") && (task.hasOwnProperty("description") || inputValue > 0)){
       const newTask = {...task}
       newTask.id = generateIdWithDate()
       newTask.check = false
+      if(inputValue > 0){
+        newTask.description = formatData()
+      }
       setToDoList(newTask)
       setList([...list, newTask])
       setListStatic([...list, newTask])
@@ -36,7 +39,7 @@ export default function ModalTask(props) {
     newArray.map(item => {
       if(item.id == data.id){
         item.title = task.title
-        item.description = task.description
+        item.description = inputValue > 0 ? formatData() : task.description
       }
     })
     setList(newArray)
@@ -45,15 +48,25 @@ export default function ModalTask(props) {
     setIsModalVisible(false)
   }
 
-  useEffect(async () => {
-      try {
-        const phrases = await getCatPhrases()
-        setRandomTask(randomTask+phrases.fact +"\n")
-        setTask({...task, description: randomTask})
-      } catch(e){
-        console.log("error getCatPhrases")
-      }
+  useEffect(() => {
+    getRandomData()
   }, [inputValue])
+
+  const formatData = () => {
+    let stringData = ""
+    for (let i = 0; i < randomTask.length; i++) {
+      stringData += randomTask[i].fact + "\n";
+    }
+    return stringData
+  }
+
+  const getRandomData = () => {
+    if(inputValue > 0){
+      getCatPhrases(inputValue).then(res => {
+        return setRandomTask(res.data)
+      }).catch(e => setRandomTask([]) )
+    }
+  }
 
   return (
     <Modal title="Add Task" visible={isModalVisible} onOk={() => data ? updateTask() : addTask()} onCancel={() => setIsModalVisible(false)}>
@@ -68,7 +81,7 @@ export default function ModalTask(props) {
         />
       </div>
       <input value={task.title} className='input-title' type="text" placeholder='Title' onChange={e => setTask({...task, title: e.target.value.toUpperCase()})} />
-      <textarea value={task.description} onChange={e => setTask({...task, description: e.target.value})}  />
+      <textarea value={task.description} onChange={e => setTask({...task, description: e.target.value})} disabled={inputValue > 0} />
     </Modal>
   )
 }
