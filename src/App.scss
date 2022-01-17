@@ -5,7 +5,7 @@
 }
 
 .App-header {
-  background-color: $primary-color;
+  background-color: $primary-color-hover;
   height: 10vh;
   display: flex;
   &__content{
@@ -15,10 +15,14 @@
     gap: 1em;
     align-items: center;
     justify-content: center;
-    color: $font-light;
+    color: $font-dark;
     h1{
-      color: $font-light;
+      color: $font-dark;
       font-size: 2em;
+      font-weight: 800;
+    }
+    p{
+      font-weight: 600;
     }
   }
 }
