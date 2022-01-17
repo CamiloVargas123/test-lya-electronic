@@ -1,14 +1,13 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import ModalTask from '../../utils/ModalTask/ModalTask'
 import { useList } from '../../provider/ListProvider'
-import { getToDoList } from '../../api/toDoList'
 
 import './Buttons.scss'
 
 export default function Buttons() {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [search, setSearch] = useState("")
-  const { list, setList, listStatic, setListFilter } = useList()
+  const { setList, listStatic } = useList()
   
 
   const  handleSearch = e => {
@@ -30,7 +29,7 @@ export default function Buttons() {
         <input type="search" placeholder='Search task' value={search} onChange={handleSearch} />
       </div>
       <button onClick={() => setIsModalVisible(true)}>Add task</button>
-      <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />
+      {isModalVisible && <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />}
     </div>
   )
 }

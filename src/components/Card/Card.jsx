@@ -39,7 +39,7 @@ export default function Card({data}) {
     <div className='card'>
       <div className='card__header'>
         <button className='card__header__btn-edit' onClick={() => editTask()}><FontAwesomeIcon icon={faEdit} /></button>
-        <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} data={data} />
+        {isModalVisible && <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} data={data} />}
         <h2>{data.title}</h2>
         <button className='card__header__btn-delete' onClick={() => removeTask()}><FontAwesomeIcon icon={faTimes} /></button>
       </div>
