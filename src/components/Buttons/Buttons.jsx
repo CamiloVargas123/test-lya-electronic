@@ -7,7 +7,7 @@ import './Buttons.scss'
 export default function Buttons() {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [search, setSearch] = useState("")
-  const { setList, listStatic } = useList()
+  const { list, setList, listStatic } = useList()
   
 
   const  handleSearch = e => {
@@ -26,7 +26,7 @@ export default function Buttons() {
   return (
     <div className='buttons'>
       <div>
-        <input type="search" placeholder='Search task' value={search} onChange={handleSearch} />
+        <input type="search" placeholder='Search task' value={search} onChange={handleSearch} disabled={list.length <= 0} />
       </div>
       <button onClick={() => setIsModalVisible(true)}>Add task</button>
       {isModalVisible && <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />}

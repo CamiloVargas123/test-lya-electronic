@@ -10,6 +10,16 @@
     width: 100%;
     input{
       width: 60%;
+      border: none;
+      border-bottom: 1px solid $primary-color-hover;
+      &:focus-visible{
+        outline: none;
+        border: none;
+        border-bottom: 1px solid $primary-color;
+      }
+      &:disabled{
+        cursor: not-allowed;
+      }
       @media (max-width: $breakpoint-md) {
         width: 80%;
       }
