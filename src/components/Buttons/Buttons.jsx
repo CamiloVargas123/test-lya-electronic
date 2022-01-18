@@ -26,7 +26,7 @@ export default function Buttons() {
   return (
     <div className='buttons'>
       <div>
-        <input type="search" placeholder='Search task' value={search} onChange={handleSearch} disabled={list.length <= 0} />
+        <input type="search" placeholder='Search task' value={search} onChange={handleSearch} disabled={listStatic.length <= 0} />
       </div>
       <button onClick={() => setIsModalVisible(true)}>Add task</button>
       {isModalVisible && <ModalTask isModalVisible={isModalVisible} setIsModalVisible={setIsModalVisible} />}
